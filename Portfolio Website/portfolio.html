@@ -1,0 +1,393 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJP Graphic Design Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #09131d;
+            scroll-behavior: smooth;
+        }
+
+        .header {
+            background-color: #111E2B;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 64px;
+        }
+
+        .nav a {
+            color: #DADFF2;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.5s;
+        }
+
+        .nav a:hover {
+            color: rgba(218, 223, 242, 0.5);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .intro-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+            text-align: left;
+        }
+
+        .intro-image {
+            flex: 1;
+            max-width: 40%;
+        }
+
+        .intro-image img {
+            width: 80%;
+            border-radius: 8px;
+        }
+
+        .intro-text {
+            flex: 1;
+            padding-left: 0px;
+        }
+
+        .intro-text h2 {
+            margin: 0;
+            font-size: 64px;
+            color: #DADFF2;
+        }
+
+        .intro-text p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.36);
+            line-height: 1.75;
+        }
+
+        .portfolio-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 24px 48px;
+            border-radius: 8px;
+            background-color: #111E2B;
+            color: #DADFF2;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.5s;
+        }
+
+        .portfolio-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-section {
+            background-color: #111E2B;
+            border-radius: 8px;
+            padding: 28px;
+            max-width: 88%;
+            margin: 20px auto 40px;
+            text-align: left;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            row-gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            margin-right: 10px;
+            color: rgba(218, 223, 242, 0.36);
+        }
+
+        .contact-item a {
+            color: #DADFF2;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .intro-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .intro-image {
+                max-width: 75%;
+                margin-bottom: 20px;
+            }
+
+            .intro-text {
+                padding-left: 0;
+            }
+        }
+
+        .grid-container {
+            column-count: 4;
+            column-gap: 16px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        @media (max-width: 1200px) {
+            .grid-container {
+                column-count: 3;
+            }
+            .intro-text h2 {
+                font-size: 40px;
+            }
+            .contact-section {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .grid-container {
+                column-count: 2;
+            }
+            .intro-text h2 {
+                font-size: 36px;
+            }
+            .intro-image img {
+                width: 100%;
+            }
+            .contact-section {
+                margin: auto auto 40px;
+                max-width: 78%;
+            }
+        }
+
+        .grid-item {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(9, 19, 29, 0.1);
+            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 24px;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .caption {
+            color: white;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .footer {
+            background-color: #111E2B;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+
+    <script src="https://kit.fontawesome.com/5b7963a7f3.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="header">
+        <nav class="nav">
+            <a href="#intro">About Me</a>
+            <a href="#portfolio">Portfolio</a>
+        </nav>
+    </div>
+
+    <div class="intro-section" id="intro">
+        <div class="intro-image">
+            <img src="../Portfolio Images/profile.webp" alt="Joshua's Image" loading="lazy">
+        </div>
+        <div class="intro-text">
+            <h2>Hello, I'm Joshua</h2>
+            <p>A passionate graphic designer dedicated to crafting visually stunning designs that communicate effectively. My work spans various creative domains, including branding, digital media, and print design.</p>
+            <a href="#portfolio" class="portfolio-button">Some Of My Previous Work</a>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <a href="https://www.linkedin.com/in/joshua-pirwoth-odongo" target="_blank">Joshua Pirwoth Odongo</a>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>joshuapirwoth06@gmail.com</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>0701459486 / 0786688491</span>
+        </div>
+    </div>
+
+    <div class="grid-container" id="portfolio"></div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-img" loading="lazy">
+    </div>
+
+    <div class="footer">
+        Odongo Joshua Pirwoth | Graphic Design Portfolio
+    </div>
+
+    <script>
+        document.querySelectorAll('.nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20, 
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    
+
+        const imageFolder = "../Portfolio Images/";
+        const imageNames = [
+            "briller3.webp",
+            "EA Workshop on Clean Cooking New.webp",
+            "EACREE Brochure.webp",
+            "EACREEE Banner - En.webp",
+            "EACREEE Newsletter.webp",
+            "Electric Cooking Workshop - Resized.webp",
+            "Eliel Business Card.webp",
+            "Eliel Intro 5a.webp",
+            "fare-flyer-screens.webp",
+            "Flyer.webp",
+            "happy new year 1.webp",
+            "Invision Auto Christmas Message.webp",
+            "KCS Career Fair Final.webp",
+            "KCS Flyer.webp",
+            "kerbs-services poster.webp",
+            "Labor Day Other.webp",
+            "Monday 2.webp",
+            "Monday.webp",
+            "MUST Photography Grad Poster.webp",
+            "Nhinha Business Card - Alt.webp",
+            "Nhinha Flyer Portrait Screens.webp",
+            "Nhinha Intro Green Detail.webp",
+            "Nhinha Intro Light Detail.webp",
+            "phone mockup.webp",
+            "promo poster 2 - Duvet Set 3.webp",
+            "promo poster 2 - Pillow Set.webp",
+            "promo poster 3 - 4.webp",
+            "Roll up banner.webp",
+            "Ronrise Duvet Cover Poster.webp",
+            "Ronrise Flyer.webp",
+            "Ronrise Intro - Dark.webp",
+            "Signage Large - Texture Bg.webp",
+            "SDM New Years.webp",
+            "Tanzania-Independence.webp",
+            "Tuesdays.webp",
+            "Uganda Independence Day.webp",
+            "Vacancy Notice.webp",
+            "Virtual Assistant.webp",
+            "Web Design1.webp",
+            "World Tourism Day.webp"
+            ];
+
+        const gridContainer = document.querySelector(".grid-container");
+
+        imageNames.forEach(image => {
+            const item = document.createElement("div");
+            item.className = "grid-item";
+
+            const img = document.createElement("img");
+            img.src = imageFolder + image;
+            img.alt = image.replace(/\.[^/.]+$/, "");
+            img.loading = "lazy";
+
+            item.appendChild(img);
+            gridContainer.appendChild(item);
+
+            img.addEventListener("click", function() {
+                document.getElementById("modal").style.display = "block";
+                document.getElementById("modal-img").src = img.src;
+            });
+        });
+
+        document.querySelector(".close").onclick = function() {
+            document.getElementById("modal").style.display = "none";
+        };
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("modal")) {
+                document.getElementById("modal").style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
